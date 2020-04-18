@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ChessBoard from "./components/chessBoard"
 
 class Chess extends Component{
     constructor(props){
@@ -42,10 +43,7 @@ class Chess extends Component{
         return(
             <React.Fragment>
                 <div className="welcome-text">
-                    {this.createRow()}
-                    {this.createRow()}
-                    {this.createRow()}
-                    {this.createRow()}
+                    <ChessBoard />
                 </ div>
             </React.Fragment>
         )
