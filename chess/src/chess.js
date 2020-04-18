@@ -20,7 +20,8 @@ class Chess extends Component{
         return(
             <React.Fragment>
                 <div className="welcome-text">
-                    <ChessBoard setBoard={this.setBoard} />
+                  {this.state.boardElement}
+                  <ChessBoard setBoard={this.setBoard} />
                 </ div>
             </React.Fragment>
         )
@@ -28,4 +29,3 @@ class Chess extends Component{
 }
 
 export default Chess;
-

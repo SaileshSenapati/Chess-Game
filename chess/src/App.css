@@ -5,7 +5,7 @@
 .welcome {
   min-height: 100vh;
   min-width: 100vh;
-  background-image: linear-gradient(to right, red, blue);
+  background-image: linear-gradient(to right, #555522, #225555);
   color: white;
   text-align: center;
   position: relative;
@@ -55,7 +55,10 @@
 .black{
   height: 50px;
   width: 50px;
-  background-color: black;
+  background-color: #333322;
   border: 1px solid white;
 }
-
+.piece{
+  height: 45px;
+  width: 45px;
+}
