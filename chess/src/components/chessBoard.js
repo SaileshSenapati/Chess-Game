@@ -31,7 +31,6 @@ class ChessBoard extends Component{
                 }
             }
         }
-        
         const makeBoard = [];
         let counter = 0;
         for(let i=0; i<8; i++){
@@ -53,6 +52,7 @@ class ChessBoard extends Component{
         this.setState({
             element: newElement
         })
+        this.props.setBoard(element , newElement)
     }
 
     render(){

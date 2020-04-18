@@ -5,45 +5,22 @@ class Chess extends Component{
     constructor(props){
         super(props);
         this.state = {
-
+            element : null
         }
     }
-    componentDidMount(){
-    }
 
-    createRow(){
-        const element = (
-            <React.Fragment>
-                <div className="row">
-                    <div className='black'></div>
-                    <div className='white'></div>
-                    <div className='black'></div>
-                    <div className='white'></div>
-                    <div className='black'></div>
-                    <div className='white'></div>
-                    <div className='black'></div>
-                    <div className='white'></div>            
-                </div>
-                <div className='row'>
-                    <div className='white'></div>
-                    <div className='black'></div>
-                    <div className='white'></div>
-                    <div className='black'></div>
-                    <div className='white'></div>
-                    <div className='black'></div>
-                    <div className='white'></div>
-                    <div className='black'></div>
-                </div>
-            </ React.Fragment>
-        )
-        return element;
+    setBoard = (element , boardElement)=>{
+        this.setState({
+            element : element,
+            boardElement : boardElement
+        })
     }
 
     render(){
         return(
             <React.Fragment>
                 <div className="welcome-text">
-                    <ChessBoard />
+                    <ChessBoard setBoard={this.setBoard} />
                 </ div>
             </React.Fragment>
         )
