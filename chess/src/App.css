@@ -40,3 +40,43 @@
   color: white;
   border: 5px solid black;
 }
+
+.row{
+  display: flex;
+}
+
+.white{
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.black{
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  border: 1px solid white;
+}
+
+
+
+.drag-drop-zone {
+  padding: 2rem;
+  text-align: center;
+  background: #07F;
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px 10px #C0C0C0;
+}
+.drag-drop-zone p {
+  color: #FFF;
+}
+.drag-drop-zone.inside-drag-area {
+  opacity: 0.7;
+}
+.dropped-files li {
+  color: #07F;
+  padding: 3px;
+  text-align: left;
+  font-weight: bold;
+}
