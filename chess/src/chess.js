@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChessBoard from "./components/chessBoard"
+import ChessBoard from "./components/ChessBoard"
 
 class Chess extends Component{
     constructor(props){
