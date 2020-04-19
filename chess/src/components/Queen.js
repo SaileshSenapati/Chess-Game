@@ -17,6 +17,11 @@ class Queen extends Component{
           newboxColor : e.target.className,
           newBoxPiece : value
       })
+      this.possiblePlaces()
+  }
+
+  possiblePlaces(){
+
   }
 
     render(){
@@ -24,7 +29,7 @@ class Queen extends Component{
 
         return(
             <React.Fragment>
-              <div className={this.state.boxColor} key={this.state.boxKey} id={this.state.boxKey} onClick={(e)=>this.handelBoxClick('rook',e)}>
+              <div className={this.state.boxColor} key={this.state.boxKey} id={this.state.boxKey} onClick={(e)=>this.handelBoxClick('queen',e)}>
                 <img src={img_name} className="piece" alt={img_name}></img>
               </div>
             </React.Fragment>

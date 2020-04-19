@@ -17,6 +17,23 @@ class Rook extends Component{
           newboxColor : e.target.className,
           newBoxPiece : value
       })
+      this.possiblePlaces()
+  }
+
+  possiblePlaces(){
+    let arrVer = [];
+    let arrHor = [];
+    let value = 36;
+    let temp = value % 8;
+    console.log(value)
+    for(let i=0; i<8; i++){
+      arrVer.push(8*i+temp)
+      arrHor.push(i+8*temp)
+    }
+    let index=arrVer.indexOf(value);
+    arrVer.splice(index,1)
+    arrHor.splice(index,1)
+    console.log(arrVer,arrHor)
   }
 
     render(){

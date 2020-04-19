@@ -17,6 +17,24 @@ class King extends Component{
           newboxColor : e.target.className,
           newBoxPiece : value
       })
+      this.possiblePlaces()
+  }
+
+  possiblePlaces(){
+    let value = 0;
+    let arr = [value-9,value-8,value-7,value-1,value+1,value+7,value+8,value+9];
+    let length = arr.length;
+    let newArr = [];
+    //  dispose outer values
+    for(let i=0; i<length; i++){
+      if(arr[i]>-1 && arr[i]<64){
+        newArr.push(arr[i])
+      }
+    }
+    //  set edge values
+
+    console.log(value)
+    console.log(newArr)
   }
 
     render(){
@@ -24,7 +42,7 @@ class King extends Component{
 
         return(
             <React.Fragment>
-              <div className={this.state.boxColor} key={this.state.boxKey} id={this.state.boxKey} onClick={(e)=>this.handelBoxClick('rook',e)}>
+              <div className={this.state.boxColor} key={this.state.boxKey} id={this.state.boxKey} onClick={(e)=>this.handelBoxClick('king',e)}>
                 <img src={img_name} className="piece" alt={img_name}></img>
               </div>
             </React.Fragment>
