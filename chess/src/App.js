@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <div className='welcome'>
-        {homeFlag ? <div className='welcome-text'>
+        {!homeFlag ? <div className='welcome-text'>
           <h1>Classic Chess</h1>
           <button className="start-btn" onClick={()=>setHomeFlag(false)}><h4>Start the Game</h4></button>
         </div>

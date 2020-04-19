@@ -1,101 +1,55 @@
 import React, { Component } from "react";
-import Rook from "./pieces"
+import Rook from "./rook";
+
 class ChessBoard extends Component{
     constructor(props){
         super(props);
         this.state = {
-            element : []
+            element : [],
+            board: []
         }
     }
 
     componentDidMount(){
-        this.createBoard();
+        this.setElement();
+    }
+
+    setElement(){
+        const element = [];
+        for(let i=1; i<9; i++){
+            for(let j=1; j<9; j++){
+                if(i%2===0 && j%2===0){
+                    let key =  i+""+j;
+                    element.push(<div className='white' key={key} id={key} onClick={(e)=>this.handelBoxClick(null,0,e)}></div>)
+                }else if(i%2!==0 && j%2!==0){
+                    let key =  i+""+j;
+                    element.push(<div className='white' key={key} id={key} onClick={(e)=>this.handelBoxClick(null,0,e)}></div>)
+                }else if(i%2===0 && j%2!==0){
+                    let key =  i+""+j;
+                    element.push(<div className='black' key={key} id={key} onClick={(e)=>this.handelBoxClick(null,0,e)}></div>)
+                }else if(i%2!==0 && j%2===0){
+                    let key =  i+""+j;
+                    element.push(<div className='black' key={key} id={key} onClick={(e)=>this.handelBoxClick(null,0,e)}></div>)
+                }
+            }
+        }
+        this.setState({
+            element: element
+        },()=>{this.createBoard()})
     }
 
     createBoard(){
-        const element = [];
-        var pieces_img_names = ["Black_rook.png",
-                              "Black_knight.png",
-                              "Black_bishop.png",
-                              "Black_queen.png",
-                              "Black_king.png",
-                              "Black_bishop.png",
-                              "Black_knight.png",
-                              "Black_rook.png",
-
-                              "Black_pawn.png",
-                              "Black_pawn.png",
-                              "Black_pawn.png",
-                              "Black_pawn.png",
-                              "Black_pawn.png",
-                              "Black_pawn.png",
-                              "Black_pawn.png",
-                              "Black_pawn.png",
-
-                              "White_pawn.png",
-                              "White_pawn.png",
-                              "White_pawn.png",
-                              "White_pawn.png",
-                              "White_pawn.png",
-                              "White_pawn.png",
-                              "White_pawn.png",
-                              "White_pawn.png",
-
-                              "White_rook.png",
-                              "White_knight.png",
-                              "White_bishop.png",
-                              "White_queen.png",
-                              "White_king.png",
-                              "White_bishop.png",
-                              "White_knight.png",
-                              "White_rook.png"]
-          var class_name = null;
-          var img_name = null;
-          for(var i=0;i<8;i++){
-            for(var j=0;j<8;j++){
-              let key =  i+""+j;
-              if((i%2===0 && j%2===0) || (i%2!==0 && j%2!==0)){
-                class_name = "white"
-              }
-              else if((i%2===0 && j%2!==0) || (i%2!==0 && j%2===0)){
-                class_name = "black"
-              }
-              if(i===0){
-                img_name = "images\\"+pieces_img_names[j];
-              }
-              else if(i===1){
-                img_name = "images\\"+pieces_img_names[j+8];
-              }
-              else if(i===6){
-                img_name = "images\\"+pieces_img_names[j+8*2];
-              }
-              else if(i===7){
-                img_name = "images\\"+pieces_img_names[j+8*3];
-              }
-              if((i>=0 && i<=1) || (i>=6 && i<=7)){
-                element.push(<div className={class_name} key={key} id={key}>
-                              <img src  = {img_name} className="piece" alt={img_name}>
-                              </img>
-                             </div>)
-
-              }
-              else{
-                  element.push(<div className={class_name} key={key} id={key}></div>)
-              }
-            }
-          }
-
-        const makeBoard = [];
+        const board = [];
         let counter = 0;
         for(let i=0; i<8; i++){
             let temp = []
             for(let j=0; j<8; j++){
                 counter = i*8 + j;
-                temp.push(element[counter]);
+                temp.push(this.state.element[counter]);
             }
-            makeBoard.push(temp);
+            board.push(temp);
         }
-        var board = makeBoard.map((data,index)=>{
+        const newElement = board.map((data,index)=>{
             return(
                 <div key={index} className='row'>
                     {data}
@@ -104,21 +58,36 @@ class ChessBoard extends Component{
         })
 
         this.setState({
-            element: board
+            board: newElement
         })
-        this.props.setBoard(element , board)
     }
-    
 
-    startGame =()=>{
-      //Assuming p1 is always chooses White
+    handelBoxClick(piece,player,e){
+        console.log(piece)
+        this.setState({
+            boxKey : e.target.id,
+            boxColor : e.target.className,
+            boxPiece : piece,
+            player: player
+        })
+    }
 
+    startGame=()=>{
+        const temp = this.state.element;
+        temp[0] = <Rook key="11" boxKey="11" boxColor="white" player={2} />
+        temp[7] = <Rook key="18" boxKey="18" boxColor="black" player={2} />
+        temp[56] = <Rook key="81" boxKey="81" boxColor="black" player={1} />
+        temp[63] = <Rook key="88" boxKey="88" boxColor="white" player={1} />
+        this.setState({
+            element : [...temp]
+        },()=>this.createBoard())
     }
 
     render(){
         return(
             <React.Fragment>
-                <button className="start-btn" onClick={this.startGame}>Start the game</button>
+                {this.state.board}
+                <button className="start-btn" onClick={this.startGame}>Start the Game</button>
             </React.Fragment>
         )
     }

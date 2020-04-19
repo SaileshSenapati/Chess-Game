@@ -49,16 +49,23 @@
   height: 50px;
   width: 50px;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid white;
 }
 
 .black{
   height: 50px;
   width: 50px;
-  background-color: #333322;
+  background-color: gray;
   border: 1px solid white;
 }
 .piece{
   height: 45px;
   width: 45px;
+}
+
+.test{
+  height: 50px;
+  width: 50px;
+  background-color: pink;
+  border: 1px solid black;
 }
